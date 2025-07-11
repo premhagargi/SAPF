@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { CheckCircle, Eye, Gem } from 'lucide-react';
-import Image from 'next/image';
+import Image from 'next/image'; 
 
 const leadershipTeam = [
   { name: 'Dr. Alistair Finch', role: 'President & CEO', avatar: 'AF', image: 'https://placehold.co/100x100.png' },
