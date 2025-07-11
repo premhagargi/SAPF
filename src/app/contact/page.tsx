@@ -3,7 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail, Building } from 'lucide-react';
+import { colleges } from '@/lib/college-data';
 
 export default function ContactPage() {
   return (
@@ -55,7 +56,7 @@ export default function ContactPage() {
               <div className="flex items-start gap-4">
                 <MapPin className="w-6 h-6 text-primary mt-1" />
                 <div>
-                  <h3 className="font-semibold">Main Campus</h3>
+                  <h3 className="font-semibold">Main Foundation Office</h3>
                   <p className="text-muted-foreground">123 University Ave, Toronto, ON, Canada</p>
                 </div>
               </div>
@@ -78,12 +79,29 @@ export default function ContactPage() {
           
           <Card>
             <CardHeader>
-              <CardTitle className="font-headline text-2xl">Campus Location</CardTitle>
+              <CardTitle className="font-headline text-2xl">Campus Locations</CardTitle>
             </CardHeader>
-            <CardContent>
-              {/* Placeholder for Google Map */}
-              <div className="w-full h-64 bg-secondary rounded-md flex items-center justify-center">
-                <p className="text-muted-foreground">Google Map will be embedded here.</p>
+            <CardContent className="space-y-6">
+              <div className="flex items-start gap-4">
+                <Building className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold">Summit College of Arts & Sciences</h3>
+                  <p className="text-muted-foreground">456 Summit Rd, Toronto, ON, Canada</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <Building className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold">Pinnacle Institute of Technology</h3>
+                  <p className="text-muted-foreground">789 Pinnacle Drive, Toronto, ON, Canada</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <Building className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold">Apex School of Business</h3>
+                  <p className="text-muted-foreground">101 Apex Avenue, Toronto, ON, Canada</p>
+                </div>
               </div>
             </CardContent>
           </Card>
