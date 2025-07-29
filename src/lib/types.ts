@@ -25,3 +25,9 @@ export interface NewsItem {
   id: number;
   text: string;
 }
+
+export interface Course {
+  title: string;
+  college: 'Summit College' | 'Pinnacle Institute' | 'Apex School';
+  category: 'Undergraduate' | 'Postgraduate' | 'Diploma';
+}
