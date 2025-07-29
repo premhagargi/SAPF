@@ -38,7 +38,7 @@ export function Header() {
   const pathname = usePathname();
 
   const NavItems = ({ isMobile = false, className }: { isMobile?: boolean, className?: string }) => (
-    <div className={cn(className)}>
+    <div className={cn("flex flex-wrap items-center gap-x-2", isMobile ? "flex-col gap-y-2" : "flex-row", className)}>
       {navLinks.map(({ href, label, dropdown }) => (
         <div key={href}>
           {dropdown ? (
@@ -93,10 +93,10 @@ export function Header() {
         </Link>
 
         <nav className="hidden md:flex flex-1 items-center justify-center">
-          <NavItems className="flex items-center space-x-2" />
+          <NavItems />
         </nav>
 
-        <div className="flex items-center justify-end space-x-4 md:flex-1">
+        <div className="flex flex-1 items-center justify-end space-x-4">
           <Button asChild className="hidden md:flex">
             <Link href="/admissions">Apply Now</Link>
           </Button>
@@ -108,18 +108,18 @@ export function Header() {
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[300px]">
+            <SheetContent side="left" className="w-[300px] p-0">
               <div className="flex items-center justify-between p-4 border-b">
                  <Link href="/" className="flex items-center space-x-2" onClick={() => setIsOpen(false)}>
                   <Logo className="h-6 w-6 text-primary" />
                   <span className="font-bold font-headline">The Foundation</span>
                 </Link>
-                <Button variant="ghost" onClick={() => setIsOpen(false)}>
+                <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setIsOpen(false)}>
                   <X className="h-6 w-6" />
                 </Button>
               </div>
               <nav className="flex flex-col mt-4">
-                <NavItems isMobile className="flex flex-col space-y-2"/>
+                <NavItems isMobile />
                 <div className="p-4 mt-4 border-t">
                   <Button asChild className="w-full">
                     <Link href="/admissions" onClick={() => setIsOpen(false)}>Apply Now</Link>
