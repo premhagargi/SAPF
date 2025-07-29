@@ -36,15 +36,15 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  const NavItems = ({ isMobile = false }: { isMobile?: boolean }) => (
-    <>
+  const NavItems = ({ isMobile = false, className }: { isMobile?: boolean, className?: string }) => (
+    <div className={cn(className)}>
       {navLinks.map(({ href, label, dropdown }) => (
         <div key={href}>
           {dropdown ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className={cn(
-                  'text-sm font-medium transition-colors hover:text-primary focus:bg-transparent focus:text-primary focus-visible:ring-0 focus-visible:ring-offset-0',
+                  'text-sm font-medium transition-colors hover:text-primary focus:bg-transparent focus:text-primary focus-visible:ring-0 focus-visible:ring-offset-0 px-3 py-2',
                   pathname.startsWith(href) ? 'text-primary' : 'text-foreground',
                    isMobile && 'w-full justify-start p-4 text-lg'
                 )}>
@@ -68,7 +68,7 @@ export function Header() {
               href={href}
               onClick={() => isMobile && setIsOpen(false)}
               className={cn(
-                'text-sm font-medium transition-colors hover:text-primary',
+                'text-sm font-medium transition-colors hover:text-primary px-3 py-2 rounded-md',
                 pathname === href ? 'text-primary' : 'text-foreground',
                 isMobile && 'block p-4 text-lg'
               )}
@@ -78,7 +78,7 @@ export function Header() {
           )}
         </div>
       ))}
-    </>
+    </div>
   );
 
   return (
@@ -91,11 +91,11 @@ export function Header() {
           </span>
         </Link>
 
-        <nav className="hidden md:flex flex-1 items-center space-x-2">
-          <NavItems />
+        <nav className="hidden md:flex flex-1 items-center justify-center">
+          <NavItems className="flex items-center space-x-2" />
         </nav>
 
-        <div className="flex flex-1 items-center justify-end space-x-4">
+        <div className="flex items-center justify-end space-x-4 md:flex-1">
           <Button asChild className="hidden md:flex">
             <Link href="/admissions">Apply Now</Link>
           </Button>
@@ -117,8 +117,8 @@ export function Header() {
                   <X className="h-6 w-6" />
                 </Button>
               </div>
-              <nav className="flex flex-col mt-4 space-y-2">
-                <NavItems isMobile />
+              <nav className="flex flex-col mt-4">
+                <NavItems isMobile className="flex flex-col space-y-2"/>
                 <div className="p-4 mt-4 border-t">
                   <Button asChild className="w-full">
                     <Link href="/admissions" onClick={() => setIsOpen(false)}>Apply Now</Link>
