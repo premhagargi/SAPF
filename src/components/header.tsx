@@ -28,6 +28,7 @@ const navLinks = [
   },
   { href: '/courses', label: 'Courses' },
   { href: '/news', label: 'News & Events' },
+  { href: '/faculty', label: 'Faculty' },
   { href: '/admissions', label: 'Admissions' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -87,7 +88,7 @@ export function Header() {
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <Logo className="h-8 w-8 text-primary" />
           <span className="hidden font-bold sm:inline-block font-headline text-lg">
-            Shree Allamaprabhu Foundation
+            Trillium Collegiate Foundation
           </span>
         </Link>
 
