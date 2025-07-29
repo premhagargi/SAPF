@@ -1,27 +1,36 @@
+'use client';
+
 import { Facebook, Twitter, Linkedin, Youtube, Instagram } from 'lucide-react';
 import Link from 'next/link';
 import { Logo } from './icons/logo';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-
-const quickLinks = [
-  { href: '/about', label: 'About Us' },
-  { href: '/colleges', label: 'Colleges' },
-  { href: '/courses', label: 'Courses' },
-  { href: '/admissions', label: 'Admissions' },
-  { href: '/contact', label: 'Contact' },
-  { href: '/news', label: 'News & Events' },
-];
-
-const socialLinks = [
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Facebook, href: '#', label: 'Facebook' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
-  { icon: Youtube, href: '#', label: 'YouTube' },
-];
+import { useLanguage } from '@/context/language-context';
+import { translations } from '@/lib/translations';
 
 export function Footer() {
+  const { language } = useLanguage();
+  const t = translations[language];
+  const tHeader = t.header;
+  const tFooter = t.footer;
+
+  const quickLinks = [
+    { href: '/about', label: tHeader.about },
+    { href: '/colleges', label: tHeader.colleges },
+    { href: '/courses', label: tHeader.courses },
+    { href: '/admissions', label: tHeader.admissions },
+    { href: '/contact', label: tHeader.contact },
+    { href: '/news', label: tHeader.news },
+  ];
+
+  const socialLinks = [
+    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Facebook, href: '#', label: 'Facebook' },
+    { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { icon: Instagram, href: '#', label: 'Instagram' },
+    { icon: Youtube, href: '#', label: 'YouTube' },
+  ];
+
   return (
     <footer className="border-t bg-secondary text-secondary-foreground">
       <div className="container py-12 px-4">
@@ -36,7 +45,7 @@ export function Footer() {
           </div>
           
           <div>
-            <h3 className="font-semibold mb-4">Quick Links</h3>
+            <h3 className="font-semibold mb-4">{tFooter.quickLinks}</h3>
             <ul className="space-y-2">
               {quickLinks.map(link => (
                 <li key={link.href}>
@@ -49,7 +58,7 @@ export function Footer() {
           </div>
           
           <div>
-            <h3 className="font-semibold mb-4">Contact Info</h3>
+            <h3 className="font-semibold mb-4">{tFooter.contactInfo}</h3>
             <div className="space-y-2 text-sm text-muted-foreground">
                 <p>123 University Ave, Toronto, ON, Canada</p>
                 <p>Email: info@sapfoundation.edu</p>
@@ -68,17 +77,17 @@ export function Footer() {
           </div>
           
           <div>
-            <h3 className="font-semibold mb-4">Newsletter Signup</h3>
-            <p className="text-sm text-muted-foreground mb-2">Stay updated with our latest news and events.</p>
+            <h3 className="font-semibold mb-4">{tFooter.newsletter}</h3>
+            <p className="text-sm text-muted-foreground mb-2">{tFooter.newsletterHint}</p>
             <form className="flex gap-2">
-              <Input type="email" placeholder="Your email address" className="bg-background"/>
-              <Button type="submit">Subscribe</Button>
+              <Input type="email" placeholder={tFooter.emailPlaceholder} className="bg-background"/>
+              <Button type="submit">{tFooter.subscribe}</Button>
             </form>
           </div>
         </div>
 
         <div className="mt-12 pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Shree Allamaprabhu Foundation. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {tFooter.copyright}</p>
         </div>
       </div>
     </footer>

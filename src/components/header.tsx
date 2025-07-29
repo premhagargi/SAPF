@@ -16,37 +16,42 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { colleges } from '@/lib/college-data';
-
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About Us' },
-  { 
-    href: '/colleges', 
-    label: 'Colleges',
-    dropdown: colleges.map(c => ({ href: `/colleges/${c.slug}`, label: c.name }))
-  },
-  { href: '/courses', label: 'Courses' },
-  { href: '/news', label: 'News & Events' },
-  { href: '/faculty', label: 'Faculty' },
-  { href: '/admissions', label: 'Admissions' },
-  { href: '/contact', label: 'Contact' },
-];
+import { useLanguage } from '@/context/language-context';
+import { translations } from '@/lib/translations';
+import { LanguageSwitcher } from './language-switcher';
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const { language } = useLanguage();
+  const t = translations[language];
+
+  const navLinks = [
+    { href: '/', label: t.header.home },
+    { href: '/about', label: t.header.about },
+    { 
+      href: '/colleges', 
+      label: t.header.colleges,
+      dropdown: colleges.map(c => ({ href: `/colleges/${c.slug}`, label: c.name }))
+    },
+    { href: '/courses', label: t.header.courses },
+    { href: '/news', label: t.header.news },
+    { href: '/faculty', label: t.header.faculty },
+    { href: '/admissions', label: t.header.admissions },
+    { href: '/contact', label: t.header.contact },
+  ];
 
   const NavItems = ({ isMobile = false, className }: { isMobile?: boolean, className?: string }) => (
-    <div className={cn("flex items-center gap-x-2", isMobile ? "flex-col gap-y-2" : "flex-row", className)}>
+    <div className={cn("flex items-center gap-x-2", isMobile ? "flex-col items-start gap-y-2" : "flex-row", className)}>
       {navLinks.map(({ href, label, dropdown }) => (
-        <div key={href}>
+        <div key={href} className={cn(isMobile && "w-full")}>
           {dropdown ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className={cn(
-                  'text-sm font-medium transition-colors hover:text-primary focus:bg-transparent focus:text-primary focus-visible:ring-0 focus-visible:ring-offset-0 px-3 py-2',
+                  'w-full text-sm font-medium transition-colors hover:text-primary focus:bg-transparent focus:text-primary focus-visible:ring-0 focus-visible:ring-offset-0 px-3 py-2 justify-between',
                   pathname.startsWith(href) ? 'text-primary' : 'text-foreground',
-                   isMobile && 'w-full justify-start p-4 text-lg'
+                   isMobile && 'justify-start p-4 text-lg'
                 )}>
                   {label}
                   <ChevronDown className="ml-1 h-4 w-4" />
@@ -54,7 +59,7 @@ export function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem asChild>
-                  <Link href="/colleges">All Colleges</Link>
+                  <Link href="/colleges">{t.header.allColleges}</Link>
                 </DropdownMenuItem>
                 {dropdown.map(item => (
                   <DropdownMenuItem key={item.href} asChild>
@@ -83,9 +88,9 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-20 items-center justify-between">
+      <div className="container flex h-20 items-center">
         {/* Logo Section */}
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 mr-6">
           <Logo className="h-8 w-8 text-primary" />
           <span className="hidden sm:inline-block font-bold font-headline text-lg whitespace-nowrap">
             Trillium Collegiate Foundation
@@ -93,16 +98,13 @@ export function Header() {
         </Link>
 
         {/* Center Navigation - Desktop Only */}
-        <nav className="hidden md:flex items-center justify-center">
-          <NavItems />
+        <nav className="hidden md:flex flex-1 items-center justify-center">
+           <NavItems />
         </nav>
 
         {/* Right-side CTA & Mobile Menu */}
-        <div className="flex items-center gap-2">
-          {/* Apply Now Button - Hidden on Mobile */}
-          <Button asChild className="hidden md:inline-flex">
-            <Link href="/admissions">Apply Now</Link>
-          </Button>
+        <div className="flex items-center gap-2 ml-auto">
+          <LanguageSwitcher />
 
           {/* Mobile Menu */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -116,7 +118,7 @@ export function Header() {
               <div className="flex items-center justify-between p-4 border-b">
                 <Link href="/" className="flex items-center space-x-2" onClick={() => setIsOpen(false)}>
                   <Logo className="h-6 w-6 text-primary" />
-                  <span className="font-bold font-headline">The Foundation</span>
+                  <span className="font-bold font-headline">{t.header.foundation}</span>
                 </Link>
                 <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setIsOpen(false)}>
                   <X className="h-6 w-6" />
@@ -126,7 +128,7 @@ export function Header() {
                 <NavItems isMobile />
                 <div className="p-4 mt-4 border-t">
                   <Button asChild className="w-full">
-                    <Link href="/admissions" onClick={() => setIsOpen(false)}>Apply Now</Link>
+                    <Link href="/admissions" onClick={() => setIsOpen(false)}>{t.header.applyNow}</Link>
                   </Button>
                 </div>
               </nav>

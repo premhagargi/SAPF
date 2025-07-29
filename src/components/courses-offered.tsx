@@ -1,6 +1,10 @@
+'use client';
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { BookMarked } from 'lucide-react';
+import { useLanguage } from '@/context/language-context';
+import { translations } from '@/lib/translations';
 
 const courses = {
     undergraduate: [
@@ -25,12 +29,15 @@ const courses = {
 }
 
 export function CoursesOffered() {
+    const { language } = useLanguage();
+    const t = translations[language].courses;
+
     return (
         <Tabs defaultValue="undergraduate" className="w-full">
             <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="undergraduate">Undergraduate</TabsTrigger>
-                <TabsTrigger value="postgraduate">Postgraduate</TabsTrigger>
-                <TabsTrigger value="diploma">Diploma</TabsTrigger>
+                <TabsTrigger value="undergraduate">{t.undergraduate}</TabsTrigger>
+                <TabsTrigger value="postgraduate">{t.postgraduate}</TabsTrigger>
+                <TabsTrigger value="diploma">{t.diploma}</TabsTrigger>
             </TabsList>
             <TabsContent value="undergraduate">
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
