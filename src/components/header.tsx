@@ -17,7 +17,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { colleges } from '@/lib/college-data';
 
-
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About Us' },
@@ -38,7 +37,7 @@ export function Header() {
   const pathname = usePathname();
 
   const NavItems = ({ isMobile = false, className }: { isMobile?: boolean, className?: string }) => (
-    <div className={cn("flex flex-wrap items-center gap-x-2", isMobile ? "flex-col gap-y-2" : "flex-row", className)}>
+    <div className={cn("flex items-center gap-x-2", isMobile ? "flex-col gap-y-2" : "flex-row", className)}>
       {navLinks.map(({ href, label, dropdown }) => (
         <div key={href}>
           {dropdown ? (
@@ -84,23 +83,28 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-20 items-center">
-        <Link href="/" className="mr-6 flex items-center space-x-2">
+      <div className="container flex h-20 items-center justify-between">
+        {/* Logo Section */}
+        <Link href="/" className="flex items-center gap-2">
           <Logo className="h-8 w-8 text-primary" />
-          <span className="hidden font-bold sm:inline-block font-headline text-lg">
+          <span className="hidden sm:inline-block font-bold font-headline text-lg whitespace-nowrap">
             Trillium Collegiate Foundation
           </span>
         </Link>
 
-        <nav className="hidden md:flex flex-1 items-center justify-center">
+        {/* Center Navigation - Desktop Only */}
+        <nav className="hidden md:flex items-center justify-center">
           <NavItems />
         </nav>
 
-        <div className="flex flex-1 items-center justify-end space-x-4">
-          <Button asChild className="hidden md:flex">
+        {/* Right-side CTA & Mobile Menu */}
+        <div className="flex items-center gap-2">
+          {/* Apply Now Button - Hidden on Mobile */}
+          <Button asChild className="hidden md:inline-flex">
             <Link href="/admissions">Apply Now</Link>
           </Button>
 
+          {/* Mobile Menu */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" className="md:hidden">
@@ -110,7 +114,7 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="left" className="w-[300px] p-0">
               <div className="flex items-center justify-between p-4 border-b">
-                 <Link href="/" className="flex items-center space-x-2" onClick={() => setIsOpen(false)}>
+                <Link href="/" className="flex items-center space-x-2" onClick={() => setIsOpen(false)}>
                   <Logo className="h-6 w-6 text-primary" />
                   <span className="font-bold font-headline">The Foundation</span>
                 </Link>
