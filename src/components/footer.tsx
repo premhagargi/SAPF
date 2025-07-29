@@ -1,26 +1,18 @@
-'use client';
-
 import { Facebook, Twitter, Linkedin, Youtube, Instagram } from 'lucide-react';
 import Link from 'next/link';
 import { Logo } from './icons/logo';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { useLanguage } from '@/context/language-context';
-import { translations } from '@/lib/translations';
 
 export function Footer() {
-  const { language } = useLanguage();
-  const t = translations[language];
-  const tHeader = t.header;
-  const tFooter = t.footer;
 
   const quickLinks = [
-    { href: '/about', label: tHeader.about },
-    { href: '/colleges', label: tHeader.colleges },
-    { href: '/courses', label: tHeader.courses },
-    { href: '/admissions', label: tHeader.admissions },
-    { href: '/contact', label: tHeader.contact },
-    { href: '/news', label: tHeader.news },
+    { href: '/about', label: 'About Us' },
+    { href: '/colleges', label: 'Colleges' },
+    { href: '/courses', label: 'Courses' },
+    { href: '/admissions', label: 'Admissions' },
+    { href: '/contact', label: 'Contact' },
+    { href: '/news', label: 'News & Events' },
   ];
 
   const socialLinks = [
@@ -39,13 +31,13 @@ export function Footer() {
           <div className="flex flex-col items-start">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <Logo className="h-10 w-10 text-primary" />
-              <p className="text-lg font-bold font-headline">Shree Allamaprabhu Foundation</p>
+              <p className="text-lg font-bold font-headline">Trillium Collegiate Foundation</p>
             </Link>
              <p className="text-sm text-muted-foreground">Nurturing three leading institutions for a brighter future.</p>
           </div>
           
           <div>
-            <h3 className="font-semibold mb-4">{tFooter.quickLinks}</h3>
+            <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               {quickLinks.map(link => (
                 <li key={link.href}>
@@ -58,10 +50,10 @@ export function Footer() {
           </div>
           
           <div>
-            <h3 className="font-semibold mb-4">{tFooter.contactInfo}</h3>
+            <h3 className="font-semibold mb-4">Contact Info</h3>
             <div className="space-y-2 text-sm text-muted-foreground">
                 <p>123 University Ave, Toronto, ON, Canada</p>
-                <p>Email: info@sapfoundation.edu</p>
+                <p>Email: info@trillium.edu</p>
                 <p>Phone: (123) 456-7890</p>
             </div>
              <div className="flex gap-4 mt-4">
@@ -77,17 +69,17 @@ export function Footer() {
           </div>
           
           <div>
-            <h3 className="font-semibold mb-4">{tFooter.newsletter}</h3>
-            <p className="text-sm text-muted-foreground mb-2">{tFooter.newsletterHint}</p>
+            <h3 className="font-semibold mb-4">Newsletter Signup</h3>
+            <p className="text-sm text-muted-foreground mb-2">Stay updated with our latest news and events.</p>
             <form className="flex gap-2">
-              <Input type="email" placeholder={tFooter.emailPlaceholder} className="bg-background"/>
-              <Button type="submit">{tFooter.subscribe}</Button>
+              <Input type="email" placeholder="Your email address" className="bg-background"/>
+              <Button type="submit">Subscribe</Button>
             </form>
           </div>
         </div>
 
         <div className="mt-12 pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} {tFooter.copyright}</p>
+          <p>&copy; {new Date().getFullYear()} Trillium Collegiate Foundation. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

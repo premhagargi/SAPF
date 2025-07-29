@@ -1,5 +1,3 @@
-'use client';
-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, BookOpen, GraduationCap, Star, Users, Briefcase, Calendar } from 'lucide-react';
@@ -8,14 +6,12 @@ import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { CoursesOffered } from '@/components/courses-offered';
-import { useLanguage } from '@/context/language-context';
-import { translations } from '@/lib/translations';
 
 const achievements = [
-  { icon: Users, value: '15,000+', labelKey: 'studentsEnrolled' },
-  { icon: GraduationCap, value: '50,000+', labelKey: 'alumniNetwork' },
-  { icon: Star, value: '30+', labelKey: 'yearsOfExcellence' },
-  { icon: Briefcase, value: '95%', labelKey: 'placementRate' },
+  { icon: Users, value: '15,000+', label: 'Students Enrolled' },
+  { icon: GraduationCap, value: '50,000+', label: 'Alumni Network' },
+  { icon: Star, value: '30+', label: 'Years of Excellence' },
+  { icon: Briefcase, value: '95%', label: 'Placement Rate' },
 ];
 
 const newsItems = [
@@ -64,9 +60,6 @@ const testimonials = [
 ];
 
 export default function Home() {
-  const { language } = useLanguage();
-  const t = translations[language].home;
-
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -82,17 +75,17 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/60 z-10" />
         <div className="z-20 p-4 space-y-6">
           <h1 className="text-4xl md:text-6xl font-bold font-headline leading-tight">
-            {t.heroTitle}
+            Empowering Education Through Excellence
           </h1>
           <p className="text-lg md:text-xl max-w-3xl mx-auto">
-            {t.heroSubtitle}
+            Trillium Collegiate Foundation – Nurturing Three Leading Institutions
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg" className="px-8 py-6 text-lg">
-              <Link href="/colleges">{t.exploreColleges}</Link>
+              <Link href="/colleges">Explore Colleges</Link>
             </Button>
             <Button asChild size="lg" variant="secondary" className="px-8 py-6 text-lg">
-              <Link href="/admissions">{t.applyNow} <ArrowRight className="ml-2" /></Link>
+              <Link href="/admissions">Apply Now <ArrowRight className="ml-2" /></Link>
             </Button>
           </div>
         </div>
@@ -103,9 +96,9 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="prose lg:prose-xl max-w-none">
-              <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4">{t.aboutTitle}</h2>
+              <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4">About the Foundation</h2>
               <p className="text-muted-foreground">
-                {t.aboutText}
+                The Trillium Collegiate Foundation is committed to providing transformative educational experiences that empower students to achieve their full potential and contribute positively to society. We believe in fostering a community of learners, thinkers, and innovators who will lead the future.
               </p>
             </div>
             <div className="relative w-full h-80 rounded-lg overflow-hidden shadow-lg">
@@ -119,9 +112,9 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-secondary">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4">{t.collegesTitle}</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4">Our Colleges</h2>
             <p className="text-muted-foreground text-lg">
-              {t.collegesSubtitle}
+              Discover our family of institutions, each with a unique character and academic focus, united by a commitment to excellence.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
@@ -133,7 +126,7 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <Button asChild variant="outline" className="w-full">
-                  <Link href="/colleges/summit-college">{t.visitPage} <ArrowRight className="ml-2" /></Link>
+                  <Link href="/colleges/summit-college">Visit Page <ArrowRight className="ml-2" /></Link>
                 </Button>
               </CardContent>
             </Card>
@@ -145,7 +138,7 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <Button asChild variant="outline" className="w-full">
-                  <Link href="/colleges/pinnacle-institute">{t.visitPage} <ArrowRight className="ml-2" /></Link>
+                  <Link href="/colleges/pinnacle-institute">Visit Page <ArrowRight className="ml-2" /></Link>
                 </Button>
               </CardContent>
             </Card>
@@ -157,7 +150,7 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <Button asChild variant="outline" className="w-full">
-                  <Link href="/colleges/apex-school">{t.visitPage} <ArrowRight className="ml-2" /></Link>
+                  <Link href="/colleges/apex-school">Visit Page <ArrowRight className="ml-2" /></Link>
                 </Button>
               </CardContent>
             </Card>
@@ -169,9 +162,9 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
            <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4">{t.coursesTitle}</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4">Courses Offered</h2>
             <p className="text-muted-foreground text-lg">
-              {t.coursesSubtitle}
+              Explore a wide range of programs designed to equip you with the skills and knowledge for a successful career.
             </p>
           </div>
           <CoursesOffered />
@@ -185,10 +178,10 @@ export default function Home() {
             {achievements.map((item) => {
                 const Icon = item.icon;
                 return (
-                    <div key={item.labelKey} className="flex flex-col items-center">
+                    <div key={item.label} className="flex flex-col items-center">
                         <Icon className="w-16 h-16 mb-4" />
                         <p className="text-4xl font-bold">{item.value}</p>
-                        <p className="text-lg">{t[item.labelKey as keyof typeof t]}</p>
+                        <p className="text-lg">{item.label}</p>
                     </div>
                 );
             })}
@@ -200,9 +193,9 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-secondary">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4">{t.newsTitle}</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4">News & Events</h2>
             <p className="text-muted-foreground text-lg">
-              {t.newsSubtitle}
+              Stay up-to-date with the latest announcements, achievements, and upcoming events from our foundation and colleges.
             </p>
           </div>
           <div className="grid lg:grid-cols-3 gap-8">
@@ -224,7 +217,7 @@ export default function Home() {
           </div>
           <div className="text-center mt-12">
             <Button asChild>
-                <Link href="/news">{t.viewAllNews}</Link>
+                <Link href="/news">View All News</Link>
             </Button>
           </div>
         </div>
@@ -234,7 +227,7 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
            <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4">{t.testimonialsTitle}</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4">What Our Community Says</h2>
           </div>
           <Carousel
             opts={{ align: "start", loop: true }}
@@ -270,14 +263,14 @@ export default function Home() {
           <div className="absolute inset-0 bg-primary/90 z-10" />
           <Image src="https://placehold.co/1800x400.png" data-ai-hint="library study" alt="Students studying" layout="fill" objectFit="cover" className="z-0" />
           <div className="container mx-auto px-4 text-center text-primary-foreground z-20 relative">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4">{t.ctaTitle}</h2>
-            <p className="text-lg max-w-2xl mx-auto mb-8">{t.ctaSubtitle}</p>
+            <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4">Ready to Start Your Journey?</h2>
+            <p className="text-lg max-w-2xl mx-auto mb-8">Join a community dedicated to excellence and innovation. Your future starts here.</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                  <Button asChild size="lg" variant="secondary" className="px-8 py-6 text-lg">
-                    <Link href="/admissions">{t.applyNow} <ArrowRight className="ml-2" /></Link>
+                    <Link href="/admissions">Apply Now <ArrowRight className="ml-2" /></Link>
                  </Button>
                 <Button asChild size="lg" variant="outline" className="px-8 py-6 text-lg bg-transparent border-white text-white hover:bg-white hover:text-primary">
-                    <Link href="/contact">{t.contactUs}</Link>
+                    <Link href="/contact">Contact Us</Link>
                 </Button>
             </div>
           </div>

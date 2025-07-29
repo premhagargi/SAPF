@@ -16,29 +16,24 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { colleges } from '@/lib/college-data';
-import { useLanguage } from '@/context/language-context';
-import { translations } from '@/lib/translations';
-import { LanguageSwitcher } from './language-switcher';
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const { language } = useLanguage();
-  const t = translations[language];
 
   const navLinks = [
-    { href: '/', label: t.header.home },
-    { href: '/about', label: t.header.about },
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About Us' },
     { 
       href: '/colleges', 
-      label: t.header.colleges,
+      label: 'Colleges',
       dropdown: colleges.map(c => ({ href: `/colleges/${c.slug}`, label: c.name }))
     },
-    { href: '/courses', label: t.header.courses },
-    { href: '/news', label: t.header.news },
-    { href: '/faculty', label: t.header.faculty },
-    { href: '/admissions', label: t.header.admissions },
-    { href: '/contact', label: t.header.contact },
+    { href: '/courses', label: 'Courses' },
+    { href: '/news', label: 'News & Events' },
+    { href: '/faculty', label: 'Faculty' },
+    { href: '/admissions', label: 'Admissions' },
+    { href: '/contact', label: 'Contact' },
   ];
 
   const NavItems = ({ isMobile = false, className }: { isMobile?: boolean, className?: string }) => (
@@ -59,7 +54,7 @@ export function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem asChild>
-                  <Link href="/colleges">{t.header.allColleges}</Link>
+                  <Link href="/colleges">All Colleges</Link>
                 </DropdownMenuItem>
                 {dropdown.map(item => (
                   <DropdownMenuItem key={item.href} asChild>
@@ -104,7 +99,9 @@ export function Header() {
 
         {/* Right-side CTA & Mobile Menu */}
         <div className="flex items-center gap-2 ml-auto">
-          <LanguageSwitcher />
+           <Button asChild>
+            <Link href="/admissions">Apply Now</Link>
+          </Button>
 
           {/* Mobile Menu */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -118,7 +115,7 @@ export function Header() {
               <div className="flex items-center justify-between p-4 border-b">
                 <Link href="/" className="flex items-center space-x-2" onClick={() => setIsOpen(false)}>
                   <Logo className="h-6 w-6 text-primary" />
-                  <span className="font-bold font-headline">{t.header.foundation}</span>
+                  <span className="font-bold font-headline">The Foundation</span>
                 </Link>
                 <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setIsOpen(false)}>
                   <X className="h-6 w-6" />
@@ -128,7 +125,7 @@ export function Header() {
                 <NavItems isMobile />
                 <div className="p-4 mt-4 border-t">
                   <Button asChild className="w-full">
-                    <Link href="/admissions" onClick={() => setIsOpen(false)}>{t.header.applyNow}</Link>
+                    <Link href="/admissions" onClick={() => setIsOpen(false)}>Apply Now</Link>
                   </Button>
                 </div>
               </nav>
