@@ -9,10 +9,6 @@ export function NewsTicker() {
     <div className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4">
         <div className="relative flex h-12 items-center overflow-hidden">
-          <div className="flex-shrink-0 font-bold font-headline pr-4">
-            LATEST NEWS
-          </div>
-          <div className="flex-shrink-0 h-full w-px bg-primary-foreground/30 mr-4"></div>
           <div className="flex-grow overflow-hidden">
             <div className="whitespace-nowrap ticker-animation flex gap-12 items-center">
               {extendedNewsItems.map((item, index) => (
