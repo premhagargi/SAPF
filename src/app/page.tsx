@@ -59,84 +59,38 @@ const testimonials = [
   },
 ];
 
-const heroSlides = [
-  {
-    year: '2025',
-    title: 'Fully Funded Graduate Studentships For 2025-2026',
-    description: 'Check our selection of studentships accepting applications now.',
-    image: 'https://placehold.co/1800x800.png',
-    dataAiHint: 'university campus',
-  },
-  {
-    year: '2025',
-    title: 'Explore Our Undergraduate Courses',
-    description: 'Find your passion and start your journey with us.',
-    image: 'https://placehold.co/1800x800.png',
-    dataAiHint: 'students studying',
-  },
-  {
-    year: 'Events',
-    title: 'Upcoming Open Days',
-    description: 'Visit our colleges, meet our faculty, and discover your future.',
-    image: 'https://placehold.co/1800x800.png',
-    dataAiHint: 'lecture hall',
-  },
-];
-
 export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative w-full h-[85vh] min-h-[600px] text-white">
-        <Carousel
-          opts={{ loop: true }}
-          className="w-full h-full"
-        >
-          <CarouselContent className="h-full">
-            {heroSlides.map((slide, index) => (
-              <CarouselItem key={index} className="h-full">
-                <div className="w-full h-full relative">
-                  <Image
-                    src={slide.image}
-                    alt={slide.title}
-                    data-ai-hint={slide.dataAiHint}
-                    layout="fill"
-                    objectFit="cover"
-                    className="z-0"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent z-10" />
-                  <div className="absolute inset-0 bg-black/30 z-10" />
-                  
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-20 w-full px-4">
-                     <h1 className="text-8xl md:text-9xl font-extrabold text-white/50 tracking-widest scale-y-150">
-                        TRILLIUM
-                      </h1>
-                  </div>
-
-                  <div className="absolute bottom-0 left-0 z-20 p-8 md:p-12 w-full">
-                    <div className="max-w-screen-xl mx-auto flex items-end justify-between">
-                        <div className="flex items-end gap-6">
-                            <span className="text-2xl font-semibold">{slide.year}</span>
-                            <div className="max-w-md">
-                                <h2 className="text-2xl md:text-3xl font-bold mb-2">{slide.title}</h2>
-                                <p className="text-base text-white/90">{slide.description}</p>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <div className="absolute bottom-12 right-12 z-20 flex gap-2">
-            <CarouselPrevious className="static -translate-x-0 -translate-y-0 bg-black/50 hover:bg-white text-white hover:text-black border-white/50" />
-            <CarouselNext className="static -translate-x-0 -translate-y-0 bg-black/50 hover:bg-white text-white hover:text-black border-white/50" />
+      <section className="relative w-full h-[70vh] text-white">
+        <Image 
+          src="https://placehold.co/1800x800.png"
+          alt="University campus"
+          data-ai-hint="university campus"
+          layout="fill"
+          objectFit="cover"
+          className="z-0"
+        />
+        <div className="absolute inset-0 bg-black/50 z-10" />
+        <div className="container mx-auto px-4 relative z-20 h-full flex flex-col justify-center items-center text-center">
+          <h1 className="text-4xl md:text-6xl font-bold font-headline mb-4">Empowering Education Through Excellence</h1>
+          <p className="text-lg md:text-xl max-w-3xl mb-8">
+            Shree Allamaprabhu Foundation – Nurturing Three Leading Institutions
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button size="lg" asChild>
+              <Link href="/colleges">Explore Colleges</Link>
+            </Button>
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+              <Link href="/admissions">Apply Now</Link>
+            </Button>
           </div>
-        </Carousel>
+        </div>
       </section>
 
       {/* About the Foundation */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-secondary">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="prose lg:prose-xl max-w-none">
@@ -153,7 +107,7 @@ export default function Home() {
       </section>
 
       {/* Our Colleges */}
-      <section className="py-16 md:py-24 bg-secondary">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4">Our Colleges</h2>
@@ -203,7 +157,7 @@ export default function Home() {
       </section>
       
       {/* Courses Offered */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-secondary">
         <div className="container mx-auto px-4">
            <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4">Courses Offered</h2>
