@@ -59,36 +59,80 @@ const testimonials = [
   },
 ];
 
+const heroSlides = [
+  {
+    year: '2025',
+    title: 'Fully Funded Graduate Studentships For 2025-2026',
+    description: 'Check our selection of studentships accepting applications now.',
+    image: 'https://placehold.co/1800x800.png',
+    dataAiHint: 'university campus',
+  },
+  {
+    year: '2025',
+    title: 'Explore Our Undergraduate Courses',
+    description: 'Find your passion and start your journey with us.',
+    image: 'https://placehold.co/1800x800.png',
+    dataAiHint: 'students studying',
+  },
+  {
+    year: 'Events',
+    title: 'Upcoming Open Days',
+    description: 'Visit our colleges, meet our faculty, and discover your future.',
+    image: 'https://placehold.co/1800x800.png',
+    dataAiHint: 'lecture hall',
+  },
+];
+
 export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative w-full h-[80vh] min-h-[500px] flex items-center justify-center text-center text-white">
-        <Image
-          src="https://placehold.co/1800x900.png"
-          alt="Students walking on a university campus"
-          data-ai-hint="university students"
-          layout="fill"
-          objectFit="cover"
-          className="z-0"
-        />
-        <div className="absolute inset-0 bg-black/60 z-10" />
-        <div className="z-20 p-4 space-y-6">
-          <h1 className="text-4xl md:text-6xl font-bold font-headline leading-tight">
-            Empowering Education Through Excellence
-          </h1>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto">
-            Trillium Collegiate Foundation – Nurturing Three Leading Institutions
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild size="lg" className="px-8 py-6 text-lg">
-              <Link href="/colleges">Explore Colleges</Link>
-            </Button>
-            <Button asChild size="lg" variant="secondary" className="px-8 py-6 text-lg">
-              <Link href="/admissions">Apply Now <ArrowRight className="ml-2" /></Link>
-            </Button>
+      <section className="relative w-full h-[85vh] min-h-[600px] text-white">
+        <Carousel
+          opts={{ loop: true }}
+          className="w-full h-full"
+        >
+          <CarouselContent className="h-full">
+            {heroSlides.map((slide, index) => (
+              <CarouselItem key={index} className="h-full">
+                <div className="w-full h-full relative">
+                  <Image
+                    src={slide.image}
+                    alt={slide.title}
+                    data-ai-hint={slide.dataAiHint}
+                    layout="fill"
+                    objectFit="cover"
+                    className="z-0"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent z-10" />
+                  <div className="absolute inset-0 bg-black/30 z-10" />
+                  
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-20 w-full px-4">
+                     <h1 className="text-8xl md:text-9xl font-extrabold text-white/50 tracking-widest scale-y-150">
+                        TRILLIUM
+                      </h1>
+                  </div>
+
+                  <div className="absolute bottom-0 left-0 z-20 p-8 md:p-12 w-full">
+                    <div className="max-w-screen-xl mx-auto flex items-end justify-between">
+                        <div className="flex items-end gap-6">
+                            <span className="text-2xl font-semibold">{slide.year}</span>
+                            <div className="max-w-md">
+                                <h2 className="text-2xl md:text-3xl font-bold mb-2">{slide.title}</h2>
+                                <p className="text-base text-white/90">{slide.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <div className="absolute bottom-12 right-12 z-20 flex gap-2">
+            <CarouselPrevious className="static -translate-x-0 -translate-y-0 bg-black/50 hover:bg-white text-white hover:text-black border-white/50" />
+            <CarouselNext className="static -translate-x-0 -translate-y-0 bg-black/50 hover:bg-white text-white hover:text-black border-white/50" />
           </div>
-        </div>
+        </Carousel>
       </section>
 
       {/* About the Foundation */}
