@@ -1,28 +1,17 @@
 
 'use client';
 
-import type { Metadata } from 'next';
-import { usePathname } from 'next/navigation';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
-import { NewsTicker } from '@/components/news-ticker';
-
-// Note: Metadata is not dynamically updated with this client component approach.
-// export const metadata: Metadata = {
-//   title: 'Trillium Collegiate Foundation',
-//   description: 'Nurturing three leading educational institutions.',
-// };
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-  const isHomePage = pathname === '/';
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -37,7 +26,6 @@ export default function RootLayout({
           'min-h-screen bg-background font-body antialiased'
         )}>
         <div className="relative flex min-h-screen flex-col">
-          {isHomePage && <NewsTicker />}
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
