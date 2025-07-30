@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
+import { AppLayout } from '@/components/app-layout';
 
 export const metadata: Metadata = {
   title: 'Trillium Collegiate Foundation',
@@ -25,11 +26,9 @@ export default function RootLayout({
       <body className={cn(
           'min-h-screen bg-secondary font-body antialiased'
         )}>
-        <div className="relative flex min-h-screen flex-col bg-secondary">
-          <Header />
+        <AppLayout>
           <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
+        </AppLayout>
         <Toaster />
       </body>
     </html>
