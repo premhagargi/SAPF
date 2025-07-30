@@ -82,4 +82,11 @@
       transform: translateX(-100%);
     }
   }
+
+  @media (max-width: 768px) {
+    .ticker-animation {
+      animation-duration: 5s; /* Faster on mobile */
+    }
+  }
 }
+
