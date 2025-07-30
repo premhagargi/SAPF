@@ -1,6 +1,7 @@
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, BookOpen, GraduationCap, Star, Users, Briefcase, Calendar } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, GraduationCap, Star, Users, Briefcase, Calendar, Search } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -59,33 +60,73 @@ const testimonials = [
   },
 ];
 
+const heroSlides = [
+  {
+    year: "2024",
+    title: "A Rich History of Excellence",
+    subtitle: "Discover a legacy of learning and innovation.",
+    image: "https://placehold.co/1200x800.png",
+    dataAiHint: "university building"
+  },
+  {
+    year: "EST. 1952",
+    title: "World-Class Campus",
+    subtitle: "Explore our state-of-the-art facilities and vibrant community.",
+    image: "https://placehold.co/1200x800.png",
+    dataAiHint: "modern library"
+  },
+  {
+    year: "INNOVATION",
+    title: "Leading-Edge Research",
+    subtitle: "Join us at the forefront of discovery and knowledge.",
+    image: "https://placehold.co/1200x800.png",
+    dataAiHint: "science lab"
+  }
+]
+
 export default function Home() {
   return (
     <div className="flex flex-col">
+
       {/* Hero Section */}
-      <section className="relative w-full h-[70vh] text-white">
-        <Image 
-          src="https://placehold.co/1800x800.png"
-          alt="University campus"
-          data-ai-hint="university campus"
-          layout="fill"
-          objectFit="cover"
-          className="z-0"
-        />
-        <div className="absolute inset-0 bg-black/50 z-10" />
-        <div className="container mx-auto px-4 relative z-20 h-full flex flex-col justify-center items-center text-center">
-          <h1 className="text-4xl md:text-6xl font-bold font-headline mb-4">Empowering Education Through Excellence</h1>
-          <p className="text-lg md:text-xl max-w-3xl mb-8">
-            Shree Allamaprabhu Foundation – Nurturing Three Leading Institutions
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" asChild>
-              <Link href="/colleges">Explore Colleges</Link>
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
-              <Link href="/admissions">Apply Now</Link>
-            </Button>
-          </div>
+      <section className="py-8 md:py-12">
+        <div className="container mx-auto">
+          <Carousel className="w-full bg-background rounded-2xl p-4 shadow-sm">
+            <div className="relative overflow-hidden rounded-lg">
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                  <h1 className="text-8xl md:text-[200px] lg:text-[250px] font-extrabold text-white/20 select-none font-headline">
+                    Trillium
+                  </h1>
+              </div>
+              <CarouselContent>
+                {heroSlides.map((slide, index) => (
+                  <CarouselItem key={index}>
+                    <div className="relative h-[400px] md:h-[500px] lg:h-[600px] w-full">
+                      <Image
+                        src={slide.image}
+                        alt={slide.title}
+                        data-ai-hint={slide.dataAiHint}
+                        layout="fill"
+                        objectFit="cover"
+                        className="rounded-lg"
+                      />
+                      <div className="absolute bottom-0 left-0 p-8 md:p-12 z-20 text-white">
+                         <div className="bg-black/50 p-6 rounded-lg backdrop-blur-sm">
+                            <p className="text-sm font-semibold tracking-widest uppercase mb-2">{slide.year}</p>
+                            <h2 className="text-3xl md:text-5xl font-bold font-headline mb-2">{slide.title}</h2>
+                            <p className="text-base md:text-lg max-w-md">{slide.subtitle}</p>
+                         </div>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="absolute bottom-8 right-8 z-20 hidden md:flex items-center gap-2">
+                <CarouselPrevious className="relative -left-0 -top-0 -translate-y-0 translate-x-0 bg-white/20 hover:bg-white/40 text-white border-none" />
+                <CarouselNext className="relative -right-0 -top-0 -translate-y-0 translate-x-0 bg-white/20 hover:bg-white/40 text-white border-none" />
+              </div>
+            </div>
+          </Carousel>
         </div>
       </section>
 
