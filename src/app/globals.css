@@ -71,7 +71,7 @@
 
 @layer utilities {
   .ticker-animation {
-    animation: ticker-scroll 40s linear infinite;
+    animation: ticker-scroll 15s linear infinite;
   }
 
   @keyframes ticker-scroll {
